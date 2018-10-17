@@ -1,9 +1,10 @@
 const axios= require('axios');
-
-function ServiceNow(instance,userid,password){
+// Adding a flag, preferPromise to all functions, to allow users to handle their own success and catch
+function ServiceNow(instance,userid,password, preferPromise){
     this.instance=instance;
     this.userid=userid;
     this.password=password;
+    this.preferPromise=preferPromise;
 }
 
 //Authenticate ServiceNow instances
@@ -16,6 +17,9 @@ ServiceNow.prototype.Authenticate=function(){
             password:`${this.password}`
         }
     };
+    if(this.preferPromise){
+        return axios(options);
+    }
     axios(options).then((val)=>{
         var res={
             raw:val,
@@ -38,6 +42,9 @@ ServiceNow.prototype.getSampleData=function(type,callback){
             password:`${this.password}`
         }
     };
+    if(this.preferPromise){
+        return axios(options);
+    }
     axios(options).then((val)=>{
         if(callback == undefined){
             console.log();
@@ -96,6 +103,9 @@ ServiceNow.prototype.getTableData=function(fields,filters,type,callback){
         }
     };    
     console.log(url);
+    if(this.preferPromise){
+        return axios(options);
+    }
     axios(options).then((val)=>{
         if(callback == undefined){
             console.log();
@@ -141,7 +151,9 @@ ServiceNow.prototype.createNewTask=function(data,type,callback){
             password:`${this.password}`
         }
     }
-
+    if(this.preferPromise){
+        return axios(options);
+    }
     axios(options).then((val)=>{
         if(callback == undefined){
             console.log();
@@ -183,6 +195,9 @@ ServiceNow.prototype.getSysId=function(type,number,callback){
             password:`${this.password}`
         }
     };
+    if(this.preferPromise){
+        return axios(options);
+    }
     axios(options).then((val)=>{
         if(callback == undefined){
             console.log();
@@ -228,6 +243,9 @@ ServiceNow.prototype.UpdateTask =function(type,number,data,callback){
                 password:`${this.password}`
             }
         }
+        if(this.preferPromise){
+            return axios(options);
+        }
         axios(options).then((val)=>{
             if(callback == undefined){
                 console.log();
@@ -272,6 +290,9 @@ ServiceNow.prototype.DeleteTask = function(type,number,callback){
                 username:`${this.userid}`,
                 password:`${this.password}`
             }
+        }
+        if(this.preferPromise){
+            return axios(options);
         }
         axios(options).then((val)=>{
             var res={

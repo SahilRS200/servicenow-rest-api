@@ -63,8 +63,9 @@ Run `npm install servicenow-rest-api` to install the package.
 ```
 const sn=require('servicenow-rest-api');
 
-const ServiceNow=new sn('_INSTANCE','_USERID','_PASSWORD');
-
+const ServiceNow=new sn('_INSTANCE','_USERID','_PASSWORD', false); // prefer callback to be passed to library
+If you want promise to be returned, 
+const ServiceNow=new sn('_INSTANCE','_USERID','_PASSWORD', true); // prefer to accept promise from library
 ServiceNow.Authenticate();
 
 ServiceNow.getSampleData('change_request',(res)=>{    // 
@@ -110,6 +111,7 @@ In this package, wrappers are available for below REST interfaces.
 | Parameters                   |
 |------------------------------|
 | Callback function            |
+##### If you have set preferPromise true in constructor, you do not need to pass callback. all methods will return their promise.
 
 #### Request
 
