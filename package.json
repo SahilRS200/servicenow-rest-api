@@ -1,12 +1,12 @@
 {
-  "name": "servicenow-rest-api",
+  "name": "servicenow-rest-api-with-promise",
   "version": "1.0.4",
   "description": "Wrapper library for ServiceNow REST API",
   "main": "servicenow.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Chaitanya Karanam",
+  "author": "Chaitanya Karanam | Sheikh Sahil Ali",
   "license": "MIT",
   "dependencies": {
     "axios": "^0.17.0"
@@ -17,6 +17,6 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/ChaitanyaKaranam/servicenow-rest-api"
+    "url": "https://github.com/SahilRS200/servicenow-rest-api.git"
   }
 }
